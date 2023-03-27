@@ -1,6 +1,7 @@
 package com.bottleneck.performance.quarkus.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -79,25 +80,25 @@ public class GuestBookEntry {
         this.when = when;
     }
 
+    @JsonGetter("id")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GuestBookEntry that = (GuestBookEntry) o;
-        return Objects.equals(by, that.by) && Objects.equals(message, that.message) && Objects.equals(when, that.when);
+        return Objects.equals(by, that.by) && Objects.equals(message, that.message) && Objects.equals(when, that.when) && Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(by, message, when);
-    }
-
-    @Override
-    public String toString() {
-        return "GuestBookEntry{" +
-                "by='" + by + '\'' +
-                ", message='" + message + '\'' +
-                ", when=" + when +
-                '}';
+        return Objects.hash(by, message, when, id);
     }
 }
