@@ -1,10 +1,13 @@
 # quarkus-spike-demo
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This demo application is a Guestbook for visitors. It includes a REST API for creating and reading guest book entries.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## (1) Running the database
+You can either
+1) run a containerized & ready-to-use database using `docker-compose ./src/main/docker/docker-compose-db-only.yaml up` in a container
+2) or start your own PostgreSQL server with a database called `demo-db` and a user with username `hibernate` and password `hibernate`. Quarkus will create the schema automatically if it does not exist yet.
 
-## Running the application in dev mode
+## (2) Running the application server
 
 You can run your application in dev mode that enables live coding using:
 ```shell script
@@ -12,6 +15,10 @@ You can run your application in dev mode that enables live coding using:
 ```
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+
+## (3) Using the Application
+You can talk to the API endpoints on `localhost:8080` e.g. using postman or your browser. Visit `localhost:8080/guestbook` to
+see the API documentation.
 
 ## Packaging and running the application
 

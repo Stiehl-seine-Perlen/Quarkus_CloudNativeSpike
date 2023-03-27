@@ -1,0 +1,32 @@
+package com.bottleneck.performance.quarkus.demo.rest;
+
+import com.bottleneck.performance.quarkus.demo.beans.GuestBook;
+import com.bottleneck.performance.quarkus.demo.entities.GuestBookEntry;
+
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+@Path("/guestbook")
+public class GuestBookApi {
+
+    @Inject
+    GuestBook guestBook;
+
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addEntry(GuestBookEntry entry) {
+        guestBook.addEntry(entry);
+        return Response.status(200).entity("entry added successfully").build();
+    }
+
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<GuestBookEntry> getAllEntries() {
+        return guestBook.getEntries();
+    }
+}
